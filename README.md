@@ -1,1 +1,1 @@
-# udemy-node.js-fundamentals
+Labs from Udemy's Node.js Fundamentals course
