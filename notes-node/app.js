@@ -1,24 +1,30 @@
 console.log("starting app");
 
-// Third party modules
+// File system
 const fs = require("fs");
+
+// Third party modules
 const _ = require("lodash");
+const yargs = require("yargs");
 
 // local files
 const notes = require("./notes.js");
 
-var command = process.argv[2];
+// yargs' parsed version of the argument vector
+const argv = yargs.argv;
+var command = argv._[0];
 console.log("Command:", command);
-console.log(process.argv);
+console.log("yargs", argv);
 
+// use values from yargs to call methods in other files e.g. notes.js
 if (command === "add") {
-  console.log("Addding new note");
+  notes.addNote(argv.title, argv.body);
 } else if (command === "list") {
-  console.log("Listing all notes");
-} else if (command === "remove") {
-  console.log("Removing Note");
+  notes.getAll();
 } else if (command === "read") {
-  console.log("Fetching Note");
+  notes.getNote(argv.title);
+} else if (command === "remove") {
+  notes.removeNote(argv.title);
 } else {
   console.log("Command not recognized");
 }
