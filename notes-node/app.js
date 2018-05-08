@@ -1,31 +1,24 @@
 console.log("starting app");
 
-// require built-in node modules
-// passing module name as argument to require
-// gives access to all functions on the fs module
+// Third party modules
 const fs = require("fs");
-const os = require("os");
+const _ = require("lodash");
 
-// require local files
-// notes stores exports from notes.js to be used in this file
+// local files
 const notes = require("./notes.js");
 
-var res = notes.add(123, 5);
-console.log(res);
+var command = process.argv[2];
+console.log("Command:", command);
+console.log(process.argv);
 
-// var user = os.userInfo();
-// console.log(user);
-
-// from documentation - first arg is file to append to, second arg is text to append to it, third arg is a callback with an error message
-
-// If file doesn't exist, it adds it and appends text
-// If it already exists, it just appends text
-// fs.appendFile(
-//   "greetings.txt",
-//   `Hello, ${user.username}! You are ${notes.age}`,
-//   function(err) {
-//     if (err) {
-//       console.log("Unable to write to file");
-//     }
-//   }
-// );
+if (command === "add") {
+  console.log("Addding new note");
+} else if (command === "list") {
+  console.log("Listing all notes");
+} else if (command === "remove") {
+  console.log("Removing Note");
+} else if (command === "read") {
+  console.log("Fetching Note");
+} else {
+  console.log("Command not recognized");
+}
