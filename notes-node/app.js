@@ -19,16 +19,26 @@ console.log("yargs", argv);
 // use values from yargs to call methods in other files e.g. notes.js
 if (command === "add") {
   var note = notes.addNote(argv.title, argv.body);
-  note
-    ? console.log(`note created -- Title: ${note.title}`)
-    : console.log("duplicate title, try again");
+  if (note) {
+    console.log("Note created");
+    notes.logNote(note);
+  } else {
+    console.log("duplicate title, try again");
+  }
 } else if (command === "list") {
   notes.getAll();
 } else if (command === "read") {
-  notes.getNote(argv.title);
+  var note = notes.getNote(argv.title);
+  if (note) {
+    console.log("Note found");
+    notes.logNote(note);
+  } else {
+    console.log("Note not found");
+  }
 } else if (command === "remove") {
   var noteRemoved = notes.removeNote(argv.title);
-  noteRemoved ? console.log("Note was removed") : console.log("Note not found");
+  var message = noteRemoved ? "Note was removed" : "Note not found";
+  console.log(message);
 } else {
   console.log("Command not recognized");
 }
