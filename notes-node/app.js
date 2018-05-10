@@ -18,7 +18,10 @@ console.log("yargs", argv);
 
 // use values from yargs to call methods in other files e.g. notes.js
 if (command === "add") {
-  notes.addNote(argv.title, argv.body);
+  var note = notes.addNote(argv.title, argv.body);
+  note
+    ? console.log(`note created -- Title: ${note.title}`)
+    : console.log("duplicate title, try again");
 } else if (command === "list") {
   notes.getAll();
 } else if (command === "read") {
