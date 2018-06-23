@@ -69,3 +69,6 @@ module.exports = {
   removeNote,
   logNote
 };
+
+// module.exports.age = 33
+// in app.js, this can be accessed with notes.age (because the notes variable is set to this file name)

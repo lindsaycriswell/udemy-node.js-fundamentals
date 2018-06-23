@@ -1,6 +1,6 @@
 console.log("starting app");
 
-// File system
+// File system - built-in node module
 const fs = require("fs");
 
 // Third party modules
